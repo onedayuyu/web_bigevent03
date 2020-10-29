@@ -36,7 +36,7 @@ $(function() {
             },
             success: function(res) {
                 if (res.status !== 0) {
-                    return layer.mag(res.message)
+                    return layer.msg(res.message)
                 } else {
                     layer.msg('已注册成功 ! 请登录')
                     $("#login-btn").click()
@@ -55,7 +55,7 @@ $(function() {
             data: $(this).serialize(),
             success: function(res) {
                 if (res.status !== 0) {
-                    return layer.mag(res.message)
+                    return layer.msg(res.message)
                 }
                 localStorage.setItem("token", res.token)
                 location.href = "/index.html"

@@ -5,7 +5,15 @@ $.ajaxPrefilter(function(opstions) {
 
     if (opstions.url.indexOf('/my/') !== -1) {
         opstions.headers = {
-            Authorization: localStorage.setItem('token') || ""
+            Authorization: localStorage.getItem('token') || ""
         }
     }
+    opstions.complete = function(res) {
+        var obj = res.responseJSON
+        if (obj.status === 1 && obj.message === '身份认证失败！') {
+            localStorage.removeItem("token")
+            location.href = "/login.html"
+        }
+    }
+
 })
